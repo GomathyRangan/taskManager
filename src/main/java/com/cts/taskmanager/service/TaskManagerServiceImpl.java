@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.cts.taskmanager.dao.ProjectDAO;
 import com.cts.taskmanager.dao.TaskDAO;
 import com.cts.taskmanager.dao.UserDAO;
-import com.cts.taskmanager.exception.TaskManagerException;
 import com.cts.taskmanager.vo.ParentTask;
 import com.cts.taskmanager.vo.Project;
 import com.cts.taskmanager.vo.ProjectDetails;
@@ -26,49 +25,44 @@ public class TaskManagerServiceImpl implements TaskManagerService {
 	private TaskDAO taskDAO;
 
 	@Override
-	public void addOrUpdateUser(User user) throws TaskManagerException {
+	public void addOrUpdateUser(User user) throws Exception {
 		userDAO.addUser(user);	
 	}
 
 	@Override
-	public void addOrUpdateProject(Project project) throws TaskManagerException {
+	public void addOrUpdateProject(Project project) throws Exception {
 		projectDAO.addOrUpdateProject(project);
 
 	}
 
-	public List<ProjectDetails> getProjectDetails() throws TaskManagerException {
+	public List<ProjectDetails> getProjectDetails() throws Exception {
 		return projectDAO.getProjectDetails();
 	}
 	
-	public List<Project> getAllProject() throws TaskManagerException {
-		return projectDAO.getAllProjects();
-	}
+	
 
 	
-	public void addParentTask(ParentTask parentTask) throws TaskManagerException {
+	public void addParentTask(ParentTask parentTask) throws Exception {
 		taskDAO.addParentTask(parentTask);
 
 	}
 	
-	public List<ParentTask> getAllParentTask(ParentTask parentTask) throws TaskManagerException {
-		return taskDAO.getAllParentTask();
 
-	}
 
 	@Override
-	public void addTask(Task task) throws TaskManagerException {
+	public void addTask(Task task) throws Exception {
 		taskDAO.addTask(task);
 
 	}
 
 	@Override
-	public List<User> getAllUsers() throws TaskManagerException {
+	public List<User> getAllUsers() throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.getAllUserDetails();
 	}
 
 	@Override
-	public void deleteUser(int userId) throws TaskManagerException {
+	public void deleteUser(int userId) throws Exception {
 		userDAO.deleteUser(userId);
 
 	}
@@ -77,7 +71,7 @@ public class TaskManagerServiceImpl implements TaskManagerService {
 
 
 	@Override
-	public void deleteProject(int id) throws TaskManagerException {
+	public void deleteProject(int id) throws Exception {
 		projectDAO.deleteProject(id);
 
 	}
@@ -85,51 +79,51 @@ public class TaskManagerServiceImpl implements TaskManagerService {
 	
 
 	@Override
-	public User getUserById(int id) throws TaskManagerException {
+	public User getUserById(int id) throws Exception {
 		return userDAO.getUserById(id);
 	}
 
 	@Override
-	public Project getProjectById(int id) throws TaskManagerException {
+	public Project getProjectById(int id) throws Exception {
 		return projectDAO.getProjectById(id);
 	}
 
 	@Override
-	public List<Project> getAllProjects() throws TaskManagerException {
+	public List<Project> getAllProjects() throws Exception {
 		return projectDAO.getAllProjects();
 	}
 
 	@Override
-	public void updateTaskStatus(int id, String status) throws TaskManagerException {
+	public void updateTaskStatus(int id, String status) throws Exception {
 		taskDAO.updateTaskStatus(id, status);
 		
 	}
 
 	@Override
-	public List<Task> getTaskByProjId(int projectId) throws TaskManagerException {		
+	public List<Task> getTaskByProjId(int projectId) throws Exception {		
 		return taskDAO.getTaskByProjectId(projectId);
 	}
 
 	@Override
-	public void updateTask(Task task) throws TaskManagerException {
+	public void updateTask(Task task) throws Exception {
 		taskDAO.updateTask(task);
 		
 	}
 
 	@Override
-	public Task getTaskById(int id) throws TaskManagerException {
+	public Task getTaskById(int id) throws Exception {
 		
 		return taskDAO.getTaskById(id);
 	}
 
 	@Override
-	public List<ParentTask> getAllParentTask() throws TaskManagerException {
+	public List<ParentTask> getAllParentTask() throws Exception {
 		// TODO Auto-generated method stub
 		return taskDAO.getAllParentTask();
 	}
 
 	@Override
-	public List<Task> getAllTask() throws TaskManagerException {		
+	public List<Task> getAllTask() throws Exception {		
 		return taskDAO.getAllTask();
 	}
 

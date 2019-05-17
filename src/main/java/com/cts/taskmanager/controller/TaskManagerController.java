@@ -217,6 +217,23 @@ public class TaskManagerController {
 		}
 		return responseEntity;
 	}
+	
+	@PostMapping("/addParentTask")
+	public ResponseEntity<ParentTask> addParentTask(@RequestBody ParentTask task)
+	{	 
+
+		ResponseEntity<ParentTask> responseEntity = null;
+		log.info("<<< add parent task details >>> " );
+
+		try {
+			taskManagerService.addParentTask(task);
+			responseEntity = new ResponseEntity<ParentTask> (task,HttpStatus.OK);			
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);			
+			responseEntity = new ResponseEntity<ParentTask> (task,HttpStatus.BAD_REQUEST);
+		}
+		return responseEntity;
+	}
 
 
 	@GetMapping("/getAllParentTask")

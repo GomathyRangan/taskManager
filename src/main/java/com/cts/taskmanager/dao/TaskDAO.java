@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cts.taskmanager.util.TaskManagerUtil;
 import com.cts.taskmanager.vo.ParentTask;
-
+import com.cts.taskmanager.vo.ProjectDetails;
 import com.cts.taskmanager.vo.Task;
 
 @Transactional

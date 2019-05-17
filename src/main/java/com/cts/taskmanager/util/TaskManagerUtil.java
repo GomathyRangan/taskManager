@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TaskManagerUtil {
+public final class TaskManagerUtil {
 	
 	public static Date convertToDate(String dateText) {
 		

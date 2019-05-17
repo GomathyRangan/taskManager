@@ -1,5 +1,7 @@
 package com.cts.taskmanager;
 
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -25,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.cts.taskmanager.controller.TaskManagerController;
 import com.cts.taskmanager.util.TaskManagerUtil;
+import com.cts.taskmanager.vo.ParentTask;
 import com.cts.taskmanager.vo.Project;
 import com.cts.taskmanager.vo.Task;
 import com.cts.taskmanager.vo.User;
@@ -63,7 +66,7 @@ public class TaskManagerApplicationTests {
 
 		mockMVC.perform(post("/addProject")
 				.accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)				
 				.content(jsonTxt))
 		.andExpect(status().isOk());
 		
@@ -180,7 +183,7 @@ public class TaskManagerApplicationTests {
 	@Test
 	public void testDeleteProject() throws Exception {
 
-		mockMVC.perform(delete("/deleteProject/3")
+		mockMVC.perform(delete("/deleteProject/100")
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON))		
 		.andExpect(status().isOk());
@@ -198,12 +201,12 @@ public class TaskManagerApplicationTests {
 		.andExpect(status().isOk());
 
 	}
-	
+	 
 	
 	@Test
 	public void testGetAllProject() throws Exception {
 
-		System.out.println(" user by id :::: ");
+		
 		mockMVC.perform(get("/getAllProjects")
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON))		
@@ -246,6 +249,52 @@ public class TaskManagerApplicationTests {
 				.content(jsonTxt))	
 		
 		.andExpect(status().isOk());
+
+	}
+	
+	@Test
+	public void testaddParentTask() throws Exception {
+		
+		ParentTask task = new ParentTask();
+		task.setParentTask("test");
+		
+
+		ObjectMapper obj = new ObjectMapper();
+
+		String jsonTxt = obj.writeValueAsString(task);
+
+		System.out.println(" user by id :::: ");
+		mockMVC.perform(post("/addParentTask")
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(jsonTxt))	
+		
+		.andExpect(status().isOk());
+
+	}
+	
+	
+	@Test
+	public void testAddTaskForException() throws Exception {
+		
+		Task task = new Task();
+		task.setTask("test");		
+		task.setStartDate(TaskManagerUtil.convertToDate("05/18/2019"));
+		task.setEndDate(TaskManagerUtil.convertToDate("05/18/2019"));
+		task.setPriority(1);
+		
+
+		ObjectMapper obj = new ObjectMapper();
+
+		String jsonTxt = obj.writeValueAsString(task);
+
+		System.out.println(" user by id :::: ");
+		mockMVC.perform(post("/addTask")
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(jsonTxt))	
+		
+		.andExpect(status().isBadRequest());
 
 	}
 	
@@ -332,6 +381,14 @@ public class TaskManagerApplicationTests {
 				.content(jsonTxt))			
 		.andExpect(status().isOk());
 
+		
+	}
+	
+	@Test
+	public void testDateUtil() {
+		
+		Date date =   TaskManagerUtil.convertToDate("ewrwer");
+		assertNull("Invalid Date", date);
 	}
 
 

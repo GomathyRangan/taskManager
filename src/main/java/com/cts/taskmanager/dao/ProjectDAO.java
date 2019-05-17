@@ -3,18 +3,24 @@ package com.cts.taskmanager.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import com.cts.taskmanager.vo.Project;
 import com.cts.taskmanager.vo.ProjectDetails;
+import com.cts.taskmanager.vo.User;
 
 
 
@@ -26,8 +32,7 @@ public class ProjectDAO {
 
 	public void addOrUpdateProject(Project project) throws Exception {
 		Session session = sessionFactory.getCurrentSession();			
-		session.saveOrUpdate(project);			
-		System.out.println("Project Details inserted into Database");
+		session.saveOrUpdate(project);					
 	}
 
 	public List<ProjectDetails> getProjectDetails() throws Exception {
@@ -69,11 +74,6 @@ public class ProjectDAO {
 		Query query = session.createQuery("delete Project where id= :id");
 		query.setParameter("id", id);
 		int result = query.executeUpdate();
-
-		if (result > 0) {
-			isDeleted = true;
-		}
-
 		return isDeleted;
 	}
 	
