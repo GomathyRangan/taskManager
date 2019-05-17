@@ -1,6 +1,5 @@
 package com.cts.taskmanager.config;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebInitializer  extends
 AbstractAnnotationConfigDispatcherServletInitializer {

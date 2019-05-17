@@ -3,24 +3,18 @@ package com.cts.taskmanager.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cts.taskmanager.exception.DAOException;
 import com.cts.taskmanager.vo.Project;
 import com.cts.taskmanager.vo.ProjectDetails;
-import com.cts.taskmanager.vo.User;
 
 
 
@@ -30,13 +24,13 @@ public class ProjectDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void addOrUpdateProject(Project project) throws DAOException {
+	public void addOrUpdateProject(Project project) throws Exception {
 		Session session = sessionFactory.getCurrentSession();			
 		session.saveOrUpdate(project);			
 		System.out.println("Project Details inserted into Database");
 	}
 
-	public List<ProjectDetails> getProjectDetails() throws DAOException {
+	public List<ProjectDetails> getProjectDetails() throws Exception {
 		/*
 		 * Session session = sessionFactory.getCurrentSession(); CriteriaBuilder
 		 * criteriaBuilder = session.getCriteriaBuilder(); CriteriaQuery<Project>
@@ -69,7 +63,7 @@ public class ProjectDAO {
 
 	}
 	
-	public boolean deleteProject(int id) throws DAOException {
+	public boolean deleteProject(int id) throws Exception {
 		boolean isDeleted = false;
 		Session session = sessionFactory.getCurrentSession();			
 		Query query = session.createQuery("delete Project where id= :id");
@@ -84,7 +78,7 @@ public class ProjectDAO {
 	}
 	
 	
-	public List<Project> getAllProjects() throws DAOException {
+	public List<Project> getAllProjects() throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder =  session.getCriteriaBuilder();
 		CriteriaQuery<Project> criteriaQuery = criteriaBuilder.createQuery(Project.class);
@@ -94,7 +88,7 @@ public class ProjectDAO {
 
 	}
 	
-	public Project getProjectById(int id) throws DAOException {
+	public Project getProjectById(int id) throws Exception {
 
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder =  session.getCriteriaBuilder();

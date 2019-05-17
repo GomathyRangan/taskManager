@@ -14,7 +14,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cts.taskmanager.exception.DAOException;
+
 import com.cts.taskmanager.vo.User;
 
 
@@ -24,13 +24,13 @@ public class UserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void addUser(User user) throws DAOException {
+	public void addUser(User user) throws Exception {
 		Session session = sessionFactory.getCurrentSession();			
 		session.saveOrUpdate(user);			
 		System.out.println("Book Details inserted into Database");
 	}
 
-	public List<User> getAllUserDetails() throws DAOException {
+	public List<User> getAllUserDetails() throws Exception {
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder =  session.getCriteriaBuilder();
 		CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
@@ -41,7 +41,7 @@ public class UserDAO {
 	}
 
 
-	public void deleteUser(int id) throws DAOException {
+	public void deleteUser(int id) throws Exception {
 
 		Session session = sessionFactory.getCurrentSession();			
 		Query query = session.createQuery("delete User where id= :id");
@@ -50,7 +50,7 @@ public class UserDAO {
 
 	}
 
-	public User getUserById(int id) throws DAOException {
+	public User getUserById(int id) throws Exception {
 
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder =  session.getCriteriaBuilder();

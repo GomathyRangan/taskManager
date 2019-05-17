@@ -15,10 +15,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cts.taskmanager.exception.DAOException;
+
 import com.cts.taskmanager.util.TaskManagerUtil;
 import com.cts.taskmanager.vo.ParentTask;
-import com.cts.taskmanager.vo.ProjectDetails;
+
 import com.cts.taskmanager.vo.Task;
 
 @Transactional
@@ -27,20 +27,20 @@ public class TaskDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void addTask(Task task) throws DAOException {
+	public void addTask(Task task) throws Exception {
 		Session session = sessionFactory.getCurrentSession();			
 		session.persist(task);			
 		System.out.println("Book Details inserted into Database");
 	}
 
-	public void addParentTask(ParentTask parentTask) throws DAOException {
+	public void addParentTask(ParentTask parentTask) throws Exception {
 		Session session = sessionFactory.getCurrentSession();			
 		session.persist(parentTask);			
 		System.out.println("Book Details inserted into Database");
 	}
 
 
-	public List<ParentTask> getAllParentTask() throws DAOException {
+	public List<ParentTask> getAllParentTask() throws Exception {
 
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder =  session.getCriteriaBuilder();
@@ -52,7 +52,7 @@ public class TaskDAO {
 	}
 	
 	
-	public List<Task> getAllTask() throws DAOException {
+	public List<Task> getAllTask() throws Exception {
 
 		List<Task> taskDetails = new ArrayList<Task>();
 
@@ -74,7 +74,7 @@ public class TaskDAO {
 
 	}
 
-	public Task getTaskById(int id) throws DAOException {
+	public Task getTaskById(int id) throws Exception {
 
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder =  session.getCriteriaBuilder();
@@ -87,7 +87,7 @@ public class TaskDAO {
 	}
 
 
-	public List<Task> getTaskByProjectId(int projectId) throws DAOException {
+	public List<Task> getTaskByProjectId(int projectId) throws Exception {
 
 		Session session = sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder =  session.getCriteriaBuilder();

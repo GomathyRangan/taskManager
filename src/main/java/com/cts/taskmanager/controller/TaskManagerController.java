@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cts.taskmanager.exception.TaskManagerException;
+
 import com.cts.taskmanager.service.TaskManagerService;
 import com.cts.taskmanager.vo.ParentTask;
 import com.cts.taskmanager.vo.Project;
@@ -41,7 +41,7 @@ public class TaskManagerController {
 			taskManagerService.addOrUpdateUser(user);
 			responseEntity = new ResponseEntity<User> (user,HttpStatus.OK);
 			log.info(" >>> User information is sucessfully inserted <<<");
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<User> (user,HttpStatus.BAD_REQUEST);
 		}
@@ -57,7 +57,7 @@ public class TaskManagerController {
 			users = taskManagerService.getAllUsers();
 			responseEntity = new ResponseEntity<List<User>> (users,HttpStatus.OK);
 			log.info("<<< Fetched users details from DB. >>> ");
-		}catch (TaskManagerException e) {			
+		}catch (Exception e) {			
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<List<User>> (users,HttpStatus.BAD_REQUEST);
 		}
@@ -73,7 +73,7 @@ public class TaskManagerController {
 			log.info(" >>> Get user details using user id >>>");
 			user = taskManagerService.getUserById(Integer.valueOf(id));
 			responseEntity = new ResponseEntity<User> (user,HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<User> (user,HttpStatus.BAD_REQUEST);
 		}
@@ -89,7 +89,7 @@ public class TaskManagerController {
 			log.info(" >>> Delete user details using user id >>>");
 			taskManagerService.deleteUser(Integer.valueOf(id));		
 			responseEntity = new ResponseEntity<String> (msg,HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			msg = "unable to delete the user";
 			responseEntity = new ResponseEntity<String> (msg,HttpStatus.BAD_REQUEST);
@@ -107,7 +107,7 @@ public class TaskManagerController {
 
 			taskManagerService.addOrUpdateProject(project);
 			responseEntity = new ResponseEntity<Project> (project,HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<Project> (project,HttpStatus.BAD_REQUEST);
 		}
@@ -122,7 +122,7 @@ public class TaskManagerController {
 		try {
 			taskManagerService.addOrUpdateProject(project);
 			responseEntity = new ResponseEntity<Project> (project,HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<Project> (project,HttpStatus.BAD_REQUEST);		}
 		return responseEntity;
@@ -140,7 +140,7 @@ public class TaskManagerController {
 			log.info("<<< Delete Project >>> " );
 			taskManagerService.deleteUser(Integer.valueOf(id));			
 			responseEntity = new ResponseEntity<String> (msg,HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			msg = "Project Detail could not deleted";
 			responseEntity = new ResponseEntity<String> (msg,HttpStatus.BAD_REQUEST);	
@@ -159,7 +159,7 @@ public class TaskManagerController {
 			log.info("<<< Get Project Details >>> " );
 			projDetails = taskManagerService.getProjectDetails();
 			responseEntity = new ResponseEntity<List<ProjectDetails>> (projDetails,HttpStatus.OK);
-		}catch (TaskManagerException e) {
+		}catch (Exception e) {
 			log.error(e.getMessage(),e);			
 			responseEntity = new ResponseEntity<List<ProjectDetails>> (projDetails,HttpStatus.BAD_REQUEST);
 		}
@@ -176,7 +176,7 @@ public class TaskManagerController {
 			log.info("<<< Get all Project Details >>> " );
 			projDetails = taskManagerService.getAllProjects();
 			responseEntity = new ResponseEntity<List<Project>> (projDetails,HttpStatus.OK);
-		}catch (TaskManagerException e) {
+		}catch (Exception e) {
 			log.error(e.getMessage(),e);			
 			responseEntity = new ResponseEntity<List<Project>> (projDetails,HttpStatus.BAD_REQUEST);
 		}
@@ -193,7 +193,7 @@ public class TaskManagerController {
 		try {			
 			projDetails = taskManagerService.getProjectById(id);
 			responseEntity = new ResponseEntity<Project> (projDetails,HttpStatus.OK);
-		}catch (TaskManagerException e) {
+		}catch (Exception e) {
 			log.error(e.getMessage(),e);			
 			responseEntity = new ResponseEntity<Project> (projDetails,HttpStatus.BAD_REQUEST);
 		}
@@ -211,7 +211,7 @@ public class TaskManagerController {
 		try {
 			taskManagerService.addTask(task);
 			responseEntity = new ResponseEntity<Task> (task,HttpStatus.OK);			
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);			
 			responseEntity = new ResponseEntity<Task> (task,HttpStatus.BAD_REQUEST);
 		}
@@ -228,7 +228,7 @@ public class TaskManagerController {
 			log.info("<<< Get all Project Details >>> " );
 			parentTasks = taskManagerService.getAllParentTask();
 			responseEntity = new ResponseEntity<List<ParentTask>> (parentTasks,HttpStatus.OK);
-		}catch (TaskManagerException e) {
+		}catch (Exception e) {
 			log.error(e.getMessage(),e);			
 			responseEntity = new ResponseEntity<List<ParentTask>> (parentTasks,HttpStatus.BAD_REQUEST);
 		}
@@ -244,7 +244,7 @@ public class TaskManagerController {
 		try {
 			taskManagerService.updateTaskStatus(id, "Completed");
 			responseEntity = new ResponseEntity<String> ("Status Updated",HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<String> ("Status not updated",HttpStatus.BAD_REQUEST);		}
 		return responseEntity;
@@ -260,7 +260,7 @@ public class TaskManagerController {
 		try {
 			tasks = taskManagerService.getTaskByProjId(id);
 			responseEntity = new ResponseEntity<List<Task>> (tasks,HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<List<Task>> (tasks,HttpStatus.BAD_REQUEST);		}
 		return responseEntity;
@@ -276,7 +276,7 @@ public class TaskManagerController {
 		try {
 			tasks = taskManagerService.getAllTask();
 			responseEntity = new ResponseEntity<List<Task>> (tasks,HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<List<Task>> (tasks,HttpStatus.BAD_REQUEST);		}
 		return responseEntity;
@@ -292,7 +292,7 @@ public class TaskManagerController {
 		try {
 			task = taskManagerService.getTaskById(id);
 			responseEntity = new ResponseEntity<Task> (task,HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<Task> (task,HttpStatus.BAD_REQUEST);		}
 		return responseEntity;
@@ -309,7 +309,7 @@ public class TaskManagerController {
 		try {
 			taskManagerService.updateTask(task);
 			responseEntity = new ResponseEntity<String> ("Task details updated",HttpStatus.OK);
-		} catch (TaskManagerException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 			responseEntity = new ResponseEntity<String> ("Task Details not updated",HttpStatus.BAD_REQUEST);		
 		}
