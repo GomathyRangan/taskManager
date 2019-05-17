@@ -138,7 +138,7 @@ public class TaskManagerController {
 		String msg = "project Got deleted";
 		try {
 			log.info("<<< Delete Project >>> " );
-			taskManagerService.deleteUser(Integer.valueOf(id));			
+			taskManagerService.deleteProject(Integer.valueOf(id));			
 			responseEntity = new ResponseEntity<String> (msg,HttpStatus.OK);
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
