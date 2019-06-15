@@ -7,18 +7,16 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.4.RELEASE</version>
-		 
-		
-
-		
 		<relativePath /> <!-- lookup parent from repository -->
+		
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>taskManager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>taskManager</name>
 	<description>Demo project for Spring Boot</description>
-
+	<packaging>war</packaging>
+	
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -27,7 +25,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-			
+
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -61,10 +59,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -81,10 +76,10 @@
 			<artifactId>jackson-dataformat-yaml</artifactId>
 		</dependency>
 
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-jetty</artifactId>
-</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jetty</artifactId>
+		</dependency>
 
 	</dependencies>
 

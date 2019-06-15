@@ -21,7 +21,7 @@ public class User implements Serializable {
 
 	@Id	
 	@Column(name="user_id")
-	private int userId;
+	private int id;
 	
 	@Column(name="task_id"  , nullable=true)
 	private Integer taskId;
@@ -36,20 +36,20 @@ public class User implements Serializable {
 	private String lastName;
 	
 	@Column(name="employee_id")
-	private Integer empId;
+	private Integer employeeId;
 
 	/**
-	 * @return the userId
+	 * @return the id
 	 */
-	public int getUserId() {
-		return userId;
+	public int getId() {
+		return id;
 	}
 
 	/**
-	 * @param userId the userId to set
+	 * @param id the id to set
 	 */
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
@@ -109,18 +109,19 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return the empId
+	 * @return the employeeId
 	 */
-	public Integer getEmpId() {
-		return empId;
+	public Integer getEmployeeId() {
+		return employeeId;
 	}
 
 	/**
-	 * @param empId the empId to set
+	 * @param employeeId the employeeId to set
 	 */
-	public void setEmpId(Integer empId) {
-		this.empId = empId;
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
 	}
-	
+
+
 	
 }

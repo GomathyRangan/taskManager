@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import com.cts.taskmanager.vo.Task;
 import com.cts.taskmanager.vo.User; 
 
 @RestController
+@CrossOrigin
 public class TaskManagerController {
 
 	private Logger log = LogManager.getLogger();
@@ -42,7 +44,7 @@ public class TaskManagerController {
 			responseEntity = new ResponseEntity<User> (user,HttpStatus.OK);
 			log.info(" >>> User information is sucessfully inserted <<<");
 		} catch (Exception e) {
-			log.error(e.getMessage(),e);
+			log.error(e.getMessage(),e); 
 			responseEntity = new ResponseEntity<User> (user,HttpStatus.BAD_REQUEST);
 		}
 		return responseEntity;
@@ -102,9 +104,9 @@ public class TaskManagerController {
 	public ResponseEntity<Project> addOrUpdateProject(@RequestBody Project project)
 	{	 
 		ResponseEntity<Project> responseEntity = null;
-		log.info(" <<< Add or update project >>>");
+		log.info(" <<< Add or update project >>> " + project.getStartDate());
 		try {
-
+			
 			taskManagerService.addOrUpdateProject(project);
 			responseEntity = new ResponseEntity<Project> (project,HttpStatus.OK);
 		} catch (Exception e) {

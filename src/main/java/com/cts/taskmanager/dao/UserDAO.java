@@ -56,7 +56,7 @@ public class UserDAO {
 		CriteriaBuilder criteriaBuilder =  session.getCriteriaBuilder();
 		CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
 		Root<User> root = criteriaQuery.from(User.class);
-		criteriaQuery.where(criteriaBuilder.equal(root.get("userId"),id));
+		criteriaQuery.where(criteriaBuilder.equal(root.get("id"),id));
 	//	criteriaQuery.select(root);
 		return session.createQuery(criteriaQuery).uniqueResult();
 

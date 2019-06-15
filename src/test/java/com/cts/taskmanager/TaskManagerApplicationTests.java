@@ -79,7 +79,7 @@ public class TaskManagerApplicationTests {
 
 		User user = new User();
 
-		user.setEmpId(1);
+		user.setEmployeeId(1);
 		user.setFirstName("Gomathy");
 		user.setLastName("R");
 		user.setProjectId(5);
